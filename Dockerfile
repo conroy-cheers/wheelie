@@ -27,6 +27,7 @@ RUN /bin/bash -c "cd opencv && \
 RUN /bin/bash -c "cd opencv/build && \
 				  make -j$(nproc --all) install"
 RUN /bin/bash -c "cd opencv/build && ldconfig"
+RUN rm -rf /tmp
 
 WORKDIR /ros2_overlay_ws
 RUN /bin/bash -c "source /ros2_ws/install/setup.bash && colcon build"
