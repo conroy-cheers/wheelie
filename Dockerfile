@@ -25,9 +25,8 @@ RUN /bin/bash -c "cd opencv && \
 				    -D CMAKE_SHARED_LINKER_FLAGS='-latomic' \
 				    -D BUILD_EXAMPLES=OFF .."
 RUN /bin/bash -c "cd opencv/build && \
-				  make -j$(nproc --all) install"
+				  make -j$(nproc --all) install && rm -rf /tmp/*"
 RUN /bin/bash -c "cd opencv/build && ldconfig"
-RUN rm -rf /tmp
 
 WORKDIR /ros2_overlay_ws
 RUN /bin/bash -c "source /ros2_ws/install/setup.bash && colcon build"
